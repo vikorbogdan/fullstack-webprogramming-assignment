@@ -17,6 +17,7 @@ datasource db {
 model Category {
     id       String    @id @default(cuid())
     name     String
+    name_en  String
     slug     String    @unique
     articles Article[]
 }

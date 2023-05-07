@@ -5,9 +5,6 @@ import { useSelf } from "~/hooks/useSelf";
 
 const Home: NextPage = () => {
   const self = useSelf();
-  if (self.data) {
-    console.log(self.status);
-  }
   return (
     <>
       <Head>
