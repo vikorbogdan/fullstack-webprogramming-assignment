@@ -1,7 +1,24 @@
-import type { ReactNode } from "react";
+import type { FC, ReactNode } from "react";
+import NavigationBar from "../NavigationBar";
+import { useSelf } from "~/hooks/useSelf";
 
-const Layout = (children: ReactNode) => {
-  return <div>{children}</div>;
+interface LayoutProps {
+  children?: ReactNode;
+}
+
+const Layout: FC<LayoutProps> = (props) => {
+  const self = useSelf();
+  if (self.status !== "loading" && self.status !== null) {
+    return (
+      <div>
+        <NavigationBar />
+        {props.children}
+      </div>
+    );
+  } else {
+    //TODO: Add loading screen
+    return <div>Loading...</div>;
+  }
 };
 
 export default Layout;

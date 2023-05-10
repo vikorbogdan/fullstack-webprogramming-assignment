@@ -5,6 +5,8 @@ import { SessionProvider } from "next-auth/react";
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import Head from "next/head";
+import Layout from "~/components/layouts/Layout";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -12,7 +14,14 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Component {...pageProps} />
+      <Head>
+        <title>bitek</title>
+        <meta name="description" content="Hírek az IK-ról" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </SessionProvider>
   );
 };

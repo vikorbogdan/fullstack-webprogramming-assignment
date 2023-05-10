@@ -15,8 +15,7 @@ type NextAuthStatus = "authenticated" | "unauthenticated" | "loading";
  */
 export function useSelf() {
   const [userData, setUserData] = useState<User | null>(null);
-  const [userStatus, setUserStatus] =
-    useState<NextAuthStatus>("unauthenticated");
+  const [userStatus, setUserStatus] = useState<NextAuthStatus | null>(null);
   const session = useSession();
   useEffect(() => {
     if (session.data?.user !== undefined) {
