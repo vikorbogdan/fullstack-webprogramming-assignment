@@ -9,4 +9,7 @@ export const categoryRouter = createTRPCRouter({
         where: { slug: input.slug },
       });
     }),
+  getAllCategories: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.category.findMany();
+  }),
 });
