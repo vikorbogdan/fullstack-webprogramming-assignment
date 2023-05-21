@@ -17,14 +17,15 @@ const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
     }
   );
   return (
-    <ul className="ml-auto flex gap-5 ">
+    <ul className="ml-auto flex items-center gap-5 ">
       {categories?.map((category: Category, idx) => {
         return (
           <li key={category.id}>
             <Link
+              passHref
               className={`${
                 rotations[idx] ?? ""
-              } block h-7 cursor-pointer items-center justify-center border-[1px] border-black bg-lime-500 px-3 text-center transition hover:shadow-nav`}
+              } block h-7 cursor-pointer items-center justify-center border-[1px] border-black bg-lime-500 px-3 text-center transition hover:shadow-nav focus:shadow-nav`}
               href={`/category/${category.slug}`}
             >
               {category.name}

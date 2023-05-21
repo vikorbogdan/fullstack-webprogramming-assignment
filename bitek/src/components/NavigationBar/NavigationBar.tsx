@@ -6,6 +6,7 @@ import PageTitle from "./PageTitle";
 import Image from "next/image";
 import { api } from "~/utils/api";
 import { useRouter } from "next/router";
+import UserProfile from "./UserProfile";
 const NavigationBar = () => {
   const { data: categoryData } = api.category.getAllCategories.useQuery();
   const router = useRouter();
@@ -20,13 +21,18 @@ const NavigationBar = () => {
     }
   }
   return (
-    <div className="flex p-10">
-      <Link className="relative flex flex-row items-center gap-1" href="/">
+    <div className="flex gap-4 p-10">
+      <Link
+        passHref
+        className="relative flex flex-row items-center gap-1"
+        href="/"
+      >
         <Image width="50" src={SmallLogo as StaticImageData} alt="Logo" />
         <PageTitle text={pageTitle || mainPageTitle} />
       </Link>
       <CategoryList categories={categoryData} />
       {/* Search bar */}
+      <UserProfile />
     </div>
   );
 };
