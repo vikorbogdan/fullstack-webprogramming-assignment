@@ -4,11 +4,15 @@ import CategoryList from "./CategoryList";
 import Link from "next/link";
 import PageTitle from "./PageTitle";
 import Image from "next/image";
-import { api } from "~/utils/api";
 import { useRouter } from "next/router";
 import UserProfile from "./UserProfile";
-const NavigationBar = () => {
-  const { data: categoryData } = api.category.getAllCategories.useQuery();
+import type { Category } from "@prisma/client";
+
+type NavigationBarProps = {
+  categoryData?: Category[] | undefined;
+};
+
+const NavigationBar: React.FC<NavigationBarProps> = ({ categoryData }) => {
   const router = useRouter();
   const mainPageTitle = "bitek";
   let pageTitle = "";
