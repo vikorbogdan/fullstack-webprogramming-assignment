@@ -5,4 +5,11 @@ export const articleRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.article.findMany();
   }),
+  getFeatured: publicProcedure.query(({ ctx }) => {
+    return ctx.prisma.article.findFirst({
+      where: {
+        isFeatured: true,
+      },
+    });
+  }),
 });

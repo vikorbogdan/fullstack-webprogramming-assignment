@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   // await categorySeeder(prisma);
-  // await articleSeeder(prisma);
+  await articleSeeder(prisma);
 }
 main()
   .then(async () => {

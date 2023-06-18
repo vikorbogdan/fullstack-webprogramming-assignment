@@ -6,14 +6,12 @@ import { Fragment, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const UserProfile = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { data: sessionData } = useSession();
   const self = useSelf();
   return (
     <Menu as="div" className="relative">
       <Menu.Button className="relative h-14 w-14 cursor-pointer rounded-full border-2 border-black transition hover:shadow-nav">
         <Image
-          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           fill
           className="h-auto w-full rounded-full object-cover"
           alt="User Profile picture"
@@ -47,7 +45,7 @@ const UserProfile = () => {
             </div>
           </Menu.Items>
         ) : (
-          <Menu.Items className="absolute right-0 mt-2 w-36 origin-top-right divide-y bg-transparent shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute right-0 mt-2 w-36 origin-top-right divide-y focus:outline-none">
             <div className="flex flex-col gap-1 px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
