@@ -21,6 +21,7 @@ const FeaturedArticle: React.FC<FeaturedArticleProps> = ({
           alt="placeholder"
           src={featuredArticle.image ?? PlaceholderImg}
         />
+        a
       </div>
       <div className="w-1/2">
         <div className="text-3xl font-bold">{featuredArticle?.title}</div>
