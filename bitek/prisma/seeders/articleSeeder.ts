@@ -11,37 +11,69 @@ const slugify = (text: string): string =>
     .replace(/[^\w-]+/g, "")
     .replace(/--+/g, "-");
 
-const articleData = {
-  title:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod lorem in magna euismod dictum.",
-  language: Language.HU,
-  body: "Morbi ultricies mauris ornare tortor semper sagittis. Duis placerat dolor quis lorem tincidunt posuere. Aenean sagittis nibh et nunc facilisis, quis accumsan lacus semper. Nunc iaculis ante justo, eu hendrerit turpis tincidunt at. Pellentesque eu maximus dui, sed vulputate purus. Nulla a odio ut nulla posuere malesuada. Cras volutpat ante justo, ac tempor purus interdum quis. Etiam lobortis enim elit, ut porta odio bibendum in. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque facilisis diam tincidunt semper tincidunt.",
-};
+const titleArray = [
+  "A blokklánc technológia hatása",
+  "Az AI a játékfejlesztésben",
+  "Az 5G kapcsolat és az IoT",
+  "Kiberbiztonság 2023-ban",
+  "A felhőszámítás előnyei",
+  "A következő generációs processzorok",
+  "Adatvédelem és adatbiztonság",
+  "A mélytanulás és a nagy adatok",
+  "A mesterséges intelligencia fejlődése",
+  "A legújabb IT hírek",
+];
+
+const summaryArray = [
+  "Ez a cikk bemutatja, hogy a blokklánc technológia hogyan változtatja meg az IT ipart.",
+  "Ebben a cikkben azt vizsgáljuk, hogy az AI hogyan határozhatja meg a játékfejlesztés jövőjét.",
+  "Az 5G hálózatok és az IoT együttes fejlődése új lehetőségeket teremthet.",
+  "Kiberbiztonsági kihívások és megoldások 2023-ban.",
+  "A felhőszámítás előnyei és a jövőbeli trendek.",
+  "Bemutatjuk a következő generációs processzorok legújabb fejlesztéseit.",
+  "A cikk bemutatja az adatvédelem és az adatbiztonság fontosságát.",
+  "A mélytanulás és a nagy adatok új lehetőségeket teremthetnek az AI fejlődésében.",
+  "A mesterséges intelligencia legújabb fejlesztései és trendjei.",
+  "A legfrissebb hírek és trendek az IT világából.",
+];
+
+const bodyText = "Morbi ultricies mauris ornare tortor semper sagittis...";
+
 const articleSeeder = async (prisma: PrismaClient) => {
-  const article = await prisma.article.upsert({
-    update: {},
-    where: {
-      slug: slugify(articleData.title),
-    },
-    create: {
-      slug: slugify(articleData.title),
-      title: articleData.title,
-      language: articleData.language,
-      body: articleData.body,
-      authorId: "clhd1bjt20000ox11strp81em",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      summary:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod lorem in magna euismod dictum.",
-      categories: {
-        connect: [
-          {
-            slug: "kod",
-          },
-        ],
+  for (let i = 0; i < 10; i++) {
+    const articleData = {
+      title: titleArray[i],
+      language: Language.HU,
+      body: bodyText,
+      summary: summaryArray[i],
+    };
+
+    const article = await prisma.article.upsert({
+      update: {},
+      where: {
+        slug: slugify(articleData.title ?? ""),
       },
-    },
-  });
-  console.log(article);
+      create: {
+        slug: slugify(articleData.title ?? ""),
+        title: articleData.title ?? "",
+        language: articleData.language,
+        body: articleData.body,
+        authorId: "clhd1bjt20000ox11strp81em",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        summary: articleData.summary,
+        categories: {
+          connect: [
+            {
+              slug: "kod",
+            },
+          ],
+        },
+      },
+    });
+
+    console.log(article);
+  }
 };
+
 export default articleSeeder;
