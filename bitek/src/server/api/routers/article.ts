@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
-// create a zod enum for to have an option to get the articles in descending or ascending order by date
+// Enum for ordering articles by date
 const OrderEnum = z.enum(["asc", "desc"]);
 
 export const articleRouter = createTRPCRouter({
@@ -24,4 +24,17 @@ export const articleRouter = createTRPCRouter({
       },
     });
   }),
+  getArticlesByCategorySlug: publicProcedure
+    .input(z.string())
+    .query(({ ctx, input }) => {
+      return ctx.prisma.article.findMany({
+        where: {
+          categories: {
+            some: {
+              slug: input,
+            },
+          },
+        },
+      });
+    }),
 });

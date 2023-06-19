@@ -27,3 +27,6 @@ const MyApp: AppType<{ session: Session | null }> = ({
 };
 
 export default api.withTRPC(MyApp);
+
+// TODO: Category data could be cached in the layout component to avoid unnecessary requests
+// TODO: Add 404 page

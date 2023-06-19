@@ -28,19 +28,20 @@ const Paginate: React.FC<PaginateProps> = ({
     setCurrentPage((prev) => prev - 1);
   };
   const currentItems = children.slice(indexOfFirstItem, indexOfLastItem);
+  const numberofPages = Math.ceil(children.length / itemsPerPage);
   return (
     <div>
-      <div>
-        <button onClick={handlePrevPage}>previous</button>
-        {Array.from({ length: Math.ceil(children.length / itemsPerPage) }).map(
-          (_, i) => (
+      {numberofPages > 1 && (
+        <div>
+          <button onClick={handlePrevPage}>previous</button>
+          {Array.from({ length: numberofPages }).map((_, i) => (
             <button key={i} onClick={() => handlePageChange(i + 1)}>
               {i + 1}
             </button>
-          )
-        )}
-        <button onClick={handleNextPage}>next</button>
-      </div>
+          ))}
+          <button onClick={handleNextPage}>next</button>
+        </div>
+      )}
       <div className={className}>{currentItems}</div>
     </div>
   );
