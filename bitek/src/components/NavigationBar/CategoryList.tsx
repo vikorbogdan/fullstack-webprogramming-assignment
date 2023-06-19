@@ -1,5 +1,4 @@
 import type { Category } from "@prisma/client";
-import { api } from "~/utils/api";
 import Link from "next/link";
 
 type CategoryListProps = {

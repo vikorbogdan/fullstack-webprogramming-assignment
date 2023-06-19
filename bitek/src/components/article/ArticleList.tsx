@@ -1,7 +1,6 @@
-import { Article } from "@prisma/client";
-import ArticleListItem from "./articleListItem";
-import { useState } from "react";
+import type { Article } from "@prisma/client";
 import Paginate from "./Paginate";
+import ArticleListItem from "./ArticleListItem";
 
 type ArticleListProps =
   | {

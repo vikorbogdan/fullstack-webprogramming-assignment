@@ -1,10 +1,5 @@
 import { type NextPage } from "next";
-import Image from "next/image";
 import { api } from "~/utils/api";
-import PlaceholderImg from "~/assets/img/placeholder.png";
-import Link from "next/link";
-import moment from "moment";
-import ArticleListItem from "~/components/article/articleListItem";
 import FeaturedArticle from "~/components/article/FeaturedArticle";
 import ArticleList from "~/components/article/ArticleList";
 
