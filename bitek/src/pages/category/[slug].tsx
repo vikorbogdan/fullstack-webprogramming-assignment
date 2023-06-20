@@ -6,12 +6,8 @@ import { api } from "~/utils/api";
 const CategoryPage = () => {
   const router = useRouter();
   const categorySlug = router.query.slug as string;
-  const { data: categoryData } = api.category.getCategoryBySlug.useQuery({
-    slug: categorySlug,
-  });
   const { data: articlesData } =
     api.article.getArticlesByCategorySlug.useQuery(categorySlug);
-  console.log(articlesData);
   if (!articlesData || articlesData.length === 0)
     return (
       <div className="cursor-default text-center">
@@ -22,7 +18,7 @@ const CategoryPage = () => {
       </div>
     );
   return (
-    <div>
+    <div className="p-5">
       <ArticleList
         articlesData={articlesData}
         paginate={true}

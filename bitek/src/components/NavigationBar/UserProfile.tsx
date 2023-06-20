@@ -4,12 +4,13 @@ import { useSelf } from "~/hooks/useSelf";
 import placeholderImg from "~/assets/img/placeholder.png";
 import { Fragment, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 const UserProfile = () => {
   const { data: sessionData } = useSession();
   const self = useSelf();
   return (
-    <Menu as="div" className="relative">
+    <Menu as="div" className="relative overflow-visible">
       <Menu.Button className="relative h-14 w-14 cursor-pointer rounded-full border-2 border-black transition hover:shadow-nav">
         <Image
           fill
@@ -29,7 +30,7 @@ const UserProfile = () => {
       >
         {sessionData ? (
           <Menu.Items className="absolute right-0 mt-2 w-36 origin-top-right divide-y focus:outline-none">
-            <div className="flex flex-col gap-1 bg-transparent px-1 py-1 ">
+            <div className="flex flex-col gap-1 bg-lime-500 bg-opacity-10 px-1 py-1 ">
               <Menu.Item>
                 {({ active }) => (
                   <button
@@ -42,6 +43,20 @@ const UserProfile = () => {
                   </button>
                 )}
               </Menu.Item>
+              {self.accountType === "editor" && (
+                <Menu.Item>
+                  {({ active }) => (
+                    <Link
+                      href="/author"
+                      className={`w-full text-center ${
+                        active ? "shadow-nav" : "shadow-none"
+                      } border-[1px] border-black bg-lime-500 py-1 text-black transition-shadow`}
+                    >
+                      Vezérlőpult
+                    </Link>
+                  )}
+                </Menu.Item>
+              )}
             </div>
           </Menu.Items>
         ) : (

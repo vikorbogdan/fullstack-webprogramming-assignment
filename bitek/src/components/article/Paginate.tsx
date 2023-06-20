@@ -30,16 +30,24 @@ const Paginate: React.FC<PaginateProps> = ({
   const currentItems = children.slice(indexOfFirstItem, indexOfLastItem);
   const numberofPages = Math.ceil(children.length / itemsPerPage);
   return (
-    <div>
+    <div className="flex flex-col items-center">
       {numberofPages > 1 && (
-        <div>
-          <button onClick={handlePrevPage}>previous</button>
-          {Array.from({ length: numberofPages }).map((_, i) => (
-            <button key={i} onClick={() => handlePageChange(i + 1)}>
-              {i + 1}
-            </button>
-          ))}
-          <button onClick={handleNextPage}>next</button>
+        <div className="flex flex-row gap-2">
+          <button onClick={handlePrevPage}>⏴</button>
+          <div className="flex flex-row gap-2">
+            {Array.from({ length: numberofPages }).map((_, i) => (
+              <button
+                className={`${
+                  i === currentPage - 1 ? "bg-lime-400" : "bg-lime-100"
+                } h-10 w-10 rounded-md p-2`}
+                key={i}
+                onClick={() => handlePageChange(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+          <button onClick={handleNextPage}>⏵</button>
         </div>
       )}
       <div className={className}>{currentItems}</div>

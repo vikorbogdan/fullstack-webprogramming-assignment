@@ -1,6 +1,7 @@
 import type { Article } from "@prisma/client";
 import moment from "moment";
 import Image from "next/image";
+import Link from "next/link";
 import PlaceholderImg from "~/assets/img/placeholder.png";
 type ArticleListItemProps = {
   article: Article;
@@ -8,9 +9,8 @@ type ArticleListItemProps = {
 
 const ArticleListItem: React.FC<ArticleListItemProps> = ({ article }) => {
   return (
-    //TODO: add link to article
-    <div className="h-56 w-1/6" key={article.id}>
-      <div className="relative aspect-video h-1/2 w-full">
+    <Link className="h-56 w-1/6" href={`/article/${article.slug}`}>
+      <div className="relative aspect-video">
         <Image
           fill
           style={{ objectFit: "cover" }}
@@ -25,7 +25,7 @@ const ArticleListItem: React.FC<ArticleListItemProps> = ({ article }) => {
         {moment(article.createdAt).fromNow()}
       </h2>
       <p className="h-full truncate">{article.summary}</p>
-    </div>
+    </Link>
   );
 };
 

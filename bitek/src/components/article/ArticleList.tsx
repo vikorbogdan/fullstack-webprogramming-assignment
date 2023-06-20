@@ -21,7 +21,7 @@ const ArticleList: React.FC<ArticleListProps> = ({
   if (paginate) {
     return (
       <Paginate
-        className="flex w-full flex-wrap gap-5"
+        className="flex w-full flex-wrap gap-24"
         itemsPerPage={paginationItemCount}
       >
         {articlesData?.map((article) => (
@@ -31,7 +31,7 @@ const ArticleList: React.FC<ArticleListProps> = ({
     );
   } else {
     return (
-      <div className="flex w-full flex-wrap gap-5">
+      <div className="flex w-full flex-wrap gap-24">
         {articlesData?.map((article) => (
           <ArticleListItem key={article.id} article={article} />
         ))}

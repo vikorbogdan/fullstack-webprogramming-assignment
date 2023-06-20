@@ -24,7 +24,7 @@ const FeaturedArticle: React.FC<FeaturedArticleProps> = ({
       </div>
       <div className="w-1/2">
         <div className="text-3xl font-bold">{featuredArticle?.title}</div>
-        <Link href={`articles/${featuredArticle.slug}`} className="text-xl">
+        <Link href={`article/${featuredArticle.slug}`} className="text-xl">
           {featuredArticle?.summary}
         </Link>
       </div>

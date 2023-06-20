@@ -25,7 +25,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ categoryData }) => {
     }
   }
   return (
-    <div className="flex gap-4 p-10">
+    <div className="flex gap-4 p-5">
       <Link
         passHref
         className="relative flex flex-row items-center gap-1"
@@ -35,7 +35,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ categoryData }) => {
         <PageTitle text={pageTitle || mainPageTitle} />
       </Link>
       <CategoryList categories={categoryData} />
-      {/* Search bar */}
+      {/* TODO: Add Search bar */}
       <UserProfile />
     </div>
   );
