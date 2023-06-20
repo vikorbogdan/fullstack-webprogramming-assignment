@@ -1,4 +1,4 @@
-import { Language, PrismaClient, Category } from "@prisma/client";
+import { Language, PrismaClient } from "@prisma/client";
 
 const slugify = (text: string): string =>
   text
