@@ -37,7 +37,14 @@ const summaryArray = [
   "A legfrissebb hírek és trendek az IT világából.",
 ];
 
-const bodyText = "Morbi ultricies mauris ornare tortor semper sagittis...";
+const imageArray = [
+  "https://images.unsplash.com/photo-1555949963-aa79dcee981c",
+  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4",
+  "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
+];
+
+const bodyText =
+  "A digitális korban az informatika alapvető fontosságúvá vált. Az IT szektor állandóan fejlődik, és új lehetőségeket kínál az üzleti világban. Az informatikai megoldások segítségével hatékonyabban tudjuk kezelni az adatokat, növelni a termelékenységet és optimalizálni a munkafolyamatokat. Az informatika terén a biztonság kiemelkedő jelentőséggel bír. A kiberbűnözők folyamatosan próbálkoznak behatolni a rendszerekbe és megszerezni az érzékeny információkat. Ezért elengedhetetlen, hogy megfelelő védelmi intézkedéseket alkalmazzunk, mint például erős jelszavak használata, rendszeres adatmentés, tűzfalak és vírusirtó programok telepítése. Az informatika területén a felhőalapú szolgáltatások egyre nagyobb népszerűségnek örvendenek. Az adatok és alkalmazások tárolása és kezelése felhőalapú rendszerekben lehetővé teszi a hozzáférés rugalmasságát és a távoli munkavégzést. A felhőalapú szolgáltatások lehetővé teszik az adatok egyszerű és biztonságos megosztását, valamint a számítási kapacitás rugalmas skálázását. Az IT-szakemberek nagy szerepet játszanak a vállalkozások hatékony működésében. Ők felelősek az informatikai rendszerek tervezéséért, telepítéséért és karbantartásáért. Emellett segítenek a felhasználóknak a számítógépek és szoftverek használatában, valamint problémák diagnosztizálásában és megoldásában. Az IT területén folyamatosan megjelennek új technológiák és trendek, mint például a mesterséges intelligencia, a gépi tanulás és a blokklánc technológia. Ezek az innovációk forradalmasítják az üzleti világot, lehetővé téve az automatizációt, a nagy adatok elemzését és a decentralizált tranzakciókat. Az IT-szakembereknek naprakészeknek kell lenniük ezekben a fejleményekben, hogy kihasználhassák az előnyöket és megoldásokat kínálhassanak a vállalkozásoknak.";
 
 const articleSeeder = async (prisma: PrismaClient) => {
   for (let i = 0; i < 10; i++) {
@@ -55,6 +62,7 @@ const articleSeeder = async (prisma: PrismaClient) => {
       },
       create: {
         slug: slugify(articleData.title ?? ""),
+        image: imageArray[i % 3],
         title: articleData.title ?? "",
         language: articleData.language,
         body: articleData.body,
@@ -71,8 +79,6 @@ const articleSeeder = async (prisma: PrismaClient) => {
         },
       },
     });
-
-    console.log(article);
   }
 };
 
