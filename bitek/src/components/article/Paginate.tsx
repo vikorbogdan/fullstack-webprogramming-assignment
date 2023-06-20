@@ -30,7 +30,7 @@ const Paginate: React.FC<PaginateProps> = ({
   const currentItems = children.slice(indexOfFirstItem, indexOfLastItem);
   const numberofPages = Math.ceil(children.length / itemsPerPage);
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center gap-2">
       {numberofPages > 1 && (
         <div className="flex flex-row gap-2">
           <button onClick={handlePrevPage}>⏴</button>

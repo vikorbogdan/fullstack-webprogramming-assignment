@@ -12,7 +12,10 @@ const FeaturedArticle: React.FC<FeaturedArticleProps> = ({
 }) => {
   if (featuredArticle === null) return null;
   return (
-    <div className="flex w-full flex-row gap-5">
+    <Link
+      href={`article/${featuredArticle.slug}`}
+      className="flex w-full flex-row gap-5"
+    >
       <div className="relative aspect-video w-1/2">
         <Image
           fill
@@ -24,11 +27,9 @@ const FeaturedArticle: React.FC<FeaturedArticleProps> = ({
       </div>
       <div className="w-1/2">
         <div className="text-3xl font-bold">{featuredArticle?.title}</div>
-        <Link href={`article/${featuredArticle.slug}`} className="text-xl">
-          {featuredArticle?.summary}
-        </Link>
+        <div className="text-xl">{featuredArticle?.summary}</div>
       </div>
-    </div>
+    </Link>
   );
 };
 
